@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "me.gistory.pot_g",
       "sha256_cert_fingerprints": [
-        "D6:FE:75:73:0F:66:92:4B:80:D1:0A:92:62:B6:BA:81:88:D8:FB:C0:02:32:F5:F4:1D:54:66:A6:3F:31:EC:E4"
+        "D6:FE:75:73:0F:66:92:4B:80:D1:0A:92:62:B6:BA:81:88:D8:FB:C0:02:32:F5:F4:1D:54:66:A6:3F:31:EC:E4",
+        "D5:EC:D6:10:5A:EE:B5:5B:C7:A8:43:8C:F5:C1:96:DF:83:6F:FE:B8:0E:AD:73:27:1C:F1:93:93:CD:D1:77:40"
       ]
     }
   }
