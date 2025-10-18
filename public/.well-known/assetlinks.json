@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "me.gistory.pot_g",
+      "sha256_cert_fingerprints": [
+        "D6:FE:75:73:0F:66:92:4B:80:D1:0A:92:62:B6:BA:81:88:D8:FB:C0:02:32:F5:F4:1D:54:66:A6:3F:31:EC:E4"
+      ]
+    }
+  }
+]
