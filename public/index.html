@@ -102,6 +102,12 @@
 
       // 페이지 로드 시 초기화
       setupButtonHandler();
+
+      // 페이지 로드 시 자동으로 앱 열기 또는 스토어로 이동
+      window.addEventListener("DOMContentLoaded", () => {
+        const storeUrl = getStoreUrl();
+        openAppOrStore(storeUrl);
+      });
     </script>
   </body>
 </html>
