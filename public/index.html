@@ -54,12 +54,11 @@
 
         // 딥링크 시도
         try {
-          window.open(
-            window.location.href
-              .replace("https://", "pot-g://")
-              .replace("http://", "pot-g://"),
-            "_blank"
+          const deepLinkUrl = window.location.href.replace(
+            /^https?:\/\//,
+            "pot-g://"
           );
+          window.open(deepLinkUrl, "_blank");
         } catch (e) {
           console.error("Deep link failed:", e);
         }
