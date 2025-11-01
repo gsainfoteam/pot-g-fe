@@ -1,9 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta
+      name="description"
+      content="pot-g 앱을 설치하고 더 나은 경험을 시작하세요"
+    />
+    <title>pot-g 앱 설치</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body></body>
+  <body
+    class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4"
+  >
+    <div
+      class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center space-y-6"
+    >
+      <!-- Logo -->
+      <div class="flex justify-center mb-8">
+        <img
+          src="/color.png"
+          alt="pot-g 로고"
+          class="w-32 h-32 object-contain"
+        />
+      </div>
+
+      <!-- Install Button -->
+      <button
+        id="installButton"
+        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+      >
+        앱 설치
+      </button>
+    </div>
+
+    <script>
+      // 스토어 링크로 이동하기 전 딜레이 (밀리초)
+      const STORE_REDIRECT_DELAY = 1000;
+
+      // 딥링크 시도 후 스토어 링크로 이동하는 함수
+      function openAppOrStore(storeUrl) {
+        let appOpened = false;
+
+        // 페이지가 blur되면 앱이 열린 것으로 간주
+        const handleBlur = () => {
+          appOpened = true;
+          window.removeEventListener("blur", handleBlur);
+          window.removeEventListener("pagehide", handleBlur);
+        };
+
+        window.addEventListener("blur", handleBlur);
+        window.addEventListener("pagehide", handleBlur);
+
+        // 딥링크 시도
+        try {
+          window.open(
+            window.location.href
+              .replace("https://", "pot-g://")
+              .replace("http://", "pot-g://"),
+            "_blank"
+          );
+        } catch (e) {
+          console.error("Deep link failed:", e);
+        }
+
+        // 딜레이 후에도 앱이 열리지 않았으면 스토어로 이동
+        setTimeout(() => {
+          if (!appOpened) {
+            window.removeEventListener("blur", handleBlur);
+            window.removeEventListener("pagehide", handleBlur);
+            window.location.href = storeUrl;
+          }
+        }, STORE_REDIRECT_DELAY);
+      }
+
+      // 플랫폼 감지하여 스토어 URL 반환
+      function getStoreUrl() {
+        const userAgent =
+          navigator.userAgent || navigator.vendor || window.opera;
+
+        // iOS 감지
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+          return "https://apps.apple.com/app/id6744280856";
+        }
+
+        // Android 감지 (기본값)
+        return "https://play.google.com/store/apps/details?id=me.gistory.pot_g";
+      }
+
+      // 버튼 클릭 이벤트 설정
+      function setupButtonHandler() {
+        const installButton = document.getElementById("installButton");
+
+        if (installButton) {
+          installButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            const storeUrl = getStoreUrl();
+            openAppOrStore(storeUrl);
+          });
+        }
+      }
+
+      // 페이지 로드 시 초기화
+      setupButtonHandler();
+    </script>
+  </body>
 </html>
