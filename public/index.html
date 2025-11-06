@@ -58,7 +58,7 @@
             /^https?:\/\//,
             "pot-g://"
           );
-          window.open(deepLinkUrl, "_blank");
+          window.location.href = deepLinkUrl;
         } catch (e) {
           console.error("Deep link failed:", e);
         }
